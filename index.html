@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles/css/style.css" />
+    <script src="js/lib/jquery-2.1.4.min.js"></script>
+    <script data-main="js/main" src="js/lib/require.js"></script>
+  </head>
+  <body>
+    <div id="templates">
+      <div data-template="tab-tree-node">
+        <div class="node">
+          <div class="tab">
+            <div class="arrow"><span class="glyphicon glyphicon-chevron-right"></span></div>
+            <div class="button">
+              <div class="color-indicator"></div>
+              <span class="label"></span>
+              <div class="icon loading">
+                <span class="glyphicon glyphicon-refresh"></span>
+              </div>
+              <div class="icon ready">
+                <span class="glyphicon glyphicon-ok"></span>
+              </div>
+              <div class="icon close">
+                <span class="glyphicon glyphicon-remove"></span>
+              </div>
+              <div class="icon pinned">
+                <span class="glyphicon glyphicon-pushpin"></span>
+              </div>
+            </div>
+          </div>
+          <div class="children">
+          </div>
+        </div>
+      </div>
+      <div data-template="tab-content">
+        <div class="tab">
+          <div class="top">
+            <div class="bar-buttons">
+              <div class="button button-back-to-pin disabled" title="Back To Pin">
+                <span class="glyphicon glyphicon-fast-backward"></span>
+              </div>
+              <div class="button button-back disabled" title="Back">
+                <span class="glyphicon glyphicon-circle-arrow-left"></span>
+              </div>
+              <div class="button button-forward disabled" title="Forward">
+                <span class="glyphicon glyphicon-circle-arrow-right"></span>
+              </div>
+              <div class="button button-refresh" title="Refresh">
+                <span class="glyphicon glyphicon-repeat"></span>
+              </div>
+              <div class="button button-stop" title="Stop">
+                <span class="glyphicon glyphicon-remove"></span>
+              </div>
+              <div class="button button-reset" title="Reset">
+                <span class="glyphicon glyphicon-off"></span>
+              </div>
+            </div>
+            <div class="input-text">
+              <input type="text" class="address-bar" />
+            </div>
+            <div class="bar-buttons">
+              <div class="button button-settings" title="Toggle Tab Settings">
+                <span class="glyphicon glyphicon-pushpin"></span>
+              </div>
+            </div>
+          </div>
+          <div class="settings">
+            <div class="inner">
+              <div class="bar-buttons">
+                <div class="button button-pin" title="Set Pin">
+                  <span class="glyphicon glyphicon-pushpin"></span>
+                </div>
+              </div>
+              <div class="input-text">
+                <input type="text" class="tab-name" placeholder="Tab Name" />
+              </div>
+              <div class="input-text small">
+                <input type="text" class="tab-color" placeholder="Color e.g: #00ff00" />
+              </div>
+            </div>
+          </div>
+          <div class="dialog">
+            <div class="box">
+              <div class="message">
+                This is a long message
+              </div>
+              <div class="input-text">
+                <input type="text" value="Some Default Value" />
+              </div>
+              <div class="buttons">
+                <div class="button button-cancel">
+                  Cancel
+                </div>
+                <div class="button button-ok">
+                  Ok
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="find">
+            <div class="inner">
+              <div class="input-text">
+                <input type="text" class="find-text" placeholder="Find in page..." />
+              </div>
+              <div class="label find-info"></div>
+              <div class="bar-buttons">
+                <div class="button button-find-prev" title="Previous Result">
+                  <span class="glyphicon glyphicon glyphicon-arrow-left"></span>
+                </div>
+                <div class="button button-find-next" title="Next Result">
+                  <span class="glyphicon glyphicon glyphicon-arrow-right"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="alerts"></div>
+          <div class="webview-wrapper">
+          </div>
+        </div>
+      </div>
+      <div data-template="tab-content-alert">
+        <div class="alert">
+          <span class="label"></span>
+          <div class="bar-buttons buttons"></div>
+        </div>
+      </div>
+      <div data-template="tab-webview">
+        <webview partition="persist:main"></webview>
+      </div>
+    </div>
+    <div id="main-container">
+      <div class="inner">
+        <div class="app-left">
+          <div class="header">
+            <div class="button button-collapse">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </div>
+            <div class="collapse-hide">
+              <div class="logo">
+                <img src="/images/logo-header.svg" height="40" />
+                <div class="text">
+                  Leaf Browser
+                </div>
+              </div>
+              <div class="button button-settings">
+                <span class="glyphicon glyphicon-cog"></span>
+              </div>
+            </div>
+          </div>
+          <div class="switcher">
+            <div class="reveal-container">
+              <div class="button">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+              </div>
+            </div>
+            <div class="scroll">
+              <div class="scroll-content">
+                <div class="tab-tree"></div>
+                <div class="new-tab-button">
+                  <span class="glyphicon glyphicon-plus light"></span>
+                </div>
+                <div class="child-button">
+                  <span class="glyphicon glyphicon-plus-sign light"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-right">
+          <div id="welcome">
+            <div class="logo">
+              <img src="/images/logo-mono.svg"/>
+            </div>
+            <div class="hints">
+              <div class="hint selected visible">
+                If the tab doesn't open, remove the "s" from <code>https://</code>.
+              </div>
+              <div class="hint">
+               The <span class="glyphicon glyphicon-off"></span> button puts off the tab, so lag disappears.
+	      </div>
+              <div class="hint">
+                You can jump to the address bar with <code>Ctrl+L</code>.
+              </div>
+              <div class="hint">
+                The parent tabs won't be able to close until you close their children first.
+              </div>
+              <div class="hint">
+                All the tabs save when the window closes.
+              </div>
+              <div class="hint">
+                <i>Made by a Homo Sapien. Based off of a open source browser, Leaf Browser Alpha.</i>
+              </div>
+            </div>
+          </div>
+          <div class="tabs">
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
